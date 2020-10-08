@@ -6548,7 +6548,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^4.17.19:
+lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -8417,6 +8417,11 @@ prop-types@^15.6.2, prop-types@^15.7.2:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.8.1"
+
+prototypes@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/prototypes/-/prototypes-3.0.2.tgz#ced6c9a5772b7e8dbe83ef5fd73410ef663597aa"
+  integrity sha512-2KmNvmy9cGW/lLfy3AQg1uhfXKtHz23BIsjQUfaTgerbme55fhRP2d7Rrh2swLHb4ge+dH3CLilo0lKsZp6gfg==
 
 proxy-addr@~2.0.5:
   version "2.0.6"
