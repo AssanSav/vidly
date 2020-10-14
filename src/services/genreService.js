@@ -1,6 +1,7 @@
 import http from "./httpService";
-import { apiUrl } from "../config.json";
+
+const apiUrl = "/genres"
 
 export function getGenres() {
-  return http.get(apiUrl + "/genres");
+  return http.get(apiUrl);
 }
