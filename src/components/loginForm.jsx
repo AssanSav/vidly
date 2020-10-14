@@ -1,50 +1,52 @@
-import React, { Component } from "react";
-import Input from "./commons/input";
+import React from "react";
+import { Redirect } from "react-router-dom";
+import Joi from "joi-browser";
+import Form from "./common/form";
+import auth from "../services/authService";
 
-class LoginForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      account: {
-        username: "",
-        password: "",
-      },
-    };
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
+class LoginForm extends Form {
+  state = {
+    data: { username: "", password: "" },
+    errors: {}
   };
 
-  handleChange = (e) => {
-    let account = { ...this.state.account };
-    account[e.target.name] = e.target.value;
-    this.setState({ account });
+  schema = {
+    username: Joi.string()
+      .required()
+      .label("Username"),
+    password: Joi.string()
+      .required()
+      .label("Password")
+  };
+
+  doSubmit = async () => {
+    try {
+      const { data } = this.state;
+      await auth.login(data.username, data.password);
+
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
-    const { account } = this.state;
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
+
     return (
-      <>
+      <div>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <Input
-            name="username"
-            type="text"
-            label="Username"
-            value={account.username}
-            handleChange={this.handleChange}
-          />
-          <Input
-            name="password"
-            type="password"
-            label="Password"
-            value={account.password}
-            handleChange={this.handleChange}
-          />
-          <button className="btn-primary">Submit</button>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </form>
-      </>
+      </div>
     );
   }
 }
